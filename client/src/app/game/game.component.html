@@ -1,0 +1,73 @@
+<!-- Floating background letters -->
+<span
+  *ngFor="let l of randomLetters"
+  class="letter-float"
+  [ngStyle]="{
+    left: l.left,
+    fontSize: l.fontSize,
+    animationDelay: l.animationDelay
+  }"
+>
+  {{ l.char }}
+</span>
+
+<!-- Main container -->
+<div class="container">
+  <h2>🎯 Word Guessing Game</h2>
+
+<div class="form-group">
+  <div class="form-item">
+    <label for="category">Select Category:</label>
+    <select id="category" [(ngModel)]="category">
+      <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+    </select>
+  </div>
+
+  <div class="form-item">
+    <label for="difficulty">Select Difficulty:</label>
+    <select id="difficulty" [(ngModel)]="difficulty">
+      <option *ngFor="let level of difficulties" [value]="level">{{ level }}</option>
+    </select>
+  </div>
+</div>
+
+<div style="text-align: center; margin-top: 15px;">
+  <button (click)="startGame()">Start Game</button>
+</div>
+
+
+  <hr />
+<div *ngIf="shuffledLetters.length">
+  <p style="color: #ffeb3b; font-weight: bold;">Time Left: {{ timeLeft }}s</p>
+</div>
+
+  <div *ngIf="shuffledLetters.length">
+  <p>Reorder the letters to guess the word:</p>
+  <div>
+    <button
+      class="letter-button"
+      *ngFor="let letter of shuffledLetters"
+      (click)="selectLetter(letter)"
+    >
+      {{ letter }}
+    </button>
+  </div>
+
+  <div class="answer-container">
+    <p>Your Answer:</p>
+    <div>
+      <span *ngFor="let char of userAnswer.split('')" class="answer-box">
+  {{ char }}
+</span>
+    </div>
+  </div>
+
+ <div class="bottom-buttons">
+  <button (click)="checkAnswer()">Check</button>
+  <button (click)="reset()">Reset</button>
+</div>
+
+
+  <p>{{ message }}</p>
+</div>
+</div>
