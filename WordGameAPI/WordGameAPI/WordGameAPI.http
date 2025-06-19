@@ -1,0 +1,6 @@
+@WordGameAPI_HostAddress = http://localhost:5251
+
+GET {{WordGameAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
